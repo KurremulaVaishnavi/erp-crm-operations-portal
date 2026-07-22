@@ -118,20 +118,33 @@ export const Login: React.FC = () => {
         </form>
 
         {/* Demo Credentials Box */}
-        <div className="mt-8 p-4 rounded-lg bg-slate-900/50 border border-slate-800/60">
-          <p className="text-[10px] uppercase font-bold tracking-wider text-brand-400 mb-1.5">
-            Test Credentials
+        <div className="mt-6 p-4 rounded-lg bg-slate-900/50 border border-slate-800/60 space-y-3">
+          <p className="text-[10px] uppercase font-bold tracking-wider text-brand-400">
+            Demo Portal Access Credentials
           </p>
-          <div className="space-y-1 text-xs text-slate-400">
-            <p>
-              <span className="font-semibold text-slate-300">Email:</span> admin@erpcrm.com
-            </p>
-            <p>
-              <span className="font-semibold text-slate-300">Password:</span> admin123
-            </p>
-            <p className="text-[10px] text-slate-500 mt-2 italic">
-              Role: Admin (Automatic seed on server run)
-            </p>
+          <div className="grid grid-cols-2 gap-3 text-[11px] text-slate-400 divide-x divide-slate-800/60">
+            <div className="space-y-1">
+              <p className="font-bold text-slate-300">1. Admin (Full)</p>
+              <p>ID: admin@erpcrm.com</p>
+              <p>PW: admin123</p>
+            </div>
+            <div className="space-y-1 pl-3">
+              <p className="font-bold text-slate-300">2. Sales (CRM)</p>
+              <p>ID: sales@erpcrm.com</p>
+              <p>PW: sales123</p>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-3 text-[11px] text-slate-400 divide-x divide-slate-800/60 pt-2 border-t border-slate-800/40">
+            <div className="space-y-1">
+              <p className="font-bold text-slate-300">3. Warehouse</p>
+              <p>ID: warehouse@erpcrm.com</p>
+              <p>PW: warehouse123</p>
+            </div>
+            <div className="space-y-1 pl-3">
+              <p className="font-bold text-slate-300">4. Accounts</p>
+              <p>ID: accounts@erpcrm.com</p>
+              <p>PW: accounts123</p>
+            </div>
           </div>
         </div>
       </div>

@@ -50,6 +50,17 @@ async function main() {
     },
   });
 
+  // 4. Create Accounts User
+  const accountsPass = await bcrypt.hash('accounts123', 10);
+  const accountsStaff = await prisma.user.create({
+    data: {
+      email: 'accounts@erpcrm.com',
+      password: accountsPass,
+      name: 'Adam Accounts',
+      role: 'ACCOUNTS',
+    },
+  });
+
   console.log('[Seed] Users seeded successfully.');
 
   // 4. Create Customers (CRM Leads/Clients)
