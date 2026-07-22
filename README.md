@@ -48,11 +48,10 @@ erp-crm/
 ## Local Development Setup
 
 ### 1. Database Setup
-Ensure you have a PostgreSQL database running locally or provisioned on Neon.
-Provide your connection string in the backend environmental parameters `DATABASE_URL` within `/backend/.env`:
-
+The application uses SQLite as its default database engine for simple local setup. 
+The database connection string in `/backend/.env` is configured as:
 ```env
-DATABASE_URL="postgresql://username:password@localhost:5432/erpcrm?schema=public"
+DATABASE_URL="file:./dev.db"
 ```
 
 ### 2. Backend Installation & Run
@@ -62,11 +61,12 @@ cd backend
 npm install
 ```
 
-Build database structures and generate Prisma types:
+Generate the Prisma client code and push the database schema:
 ```bash
 npx prisma generate
-npx prisma migrate dev --name init
+npx prisma db push
 ```
+*(Optionally, run `npx ts-node src/utils/seed.ts` to force-reset and seed data).*
 
 Start the TypeScript development server (will run on Port 5000):
 ```bash
@@ -89,17 +89,21 @@ npm run dev
 
 ## User Credentials for Testing
 
-On the initial backend server boot, a default Admin account is automatically seeded into the database:
-- **Email Address**: `admin@erpcrm.com`
-- **Password**: `admin123`
-- **Role**: `ADMIN`
+The following credentials are automatically generated via the database seeding script:
+
+| Role | Username (Email) | Password | Access Level / Dashboard Views |
+| :--- | :--- | :--- | :--- |
+| **Admin** | `admin@erpcrm.com` | `admin123` | Full Dashboard & Permissions |
+| **Sales** | `sales@erpcrm.com` | `sales123` | CRM + Sales Challans Dashboard |
+| **Warehouse** | `warehouse@erpcrm.com` | `warehouse123` | Products Inventory + Stock Movements Dashboard |
+| **Accounts** | `accounts@erpcrm.com` | `accounts123` | General Invoicing + Stock Overview Dashboard |
 
 ---
 
 ## Core Features & Business Logic
 
 1. **Role-Based Access (RBAC)**:
-   - **Admin**: Full access.
+   - **Admin**: Full access across all portal directories.
    - **Sales**: Access to CRM Customer catalog + Create/Draft Sales Challans.
    - **Warehouse**: Access to Products Inventory catalog + Stock Movements ledger adjustments.
    - **Accounts**: View-only access to customer listings, products, and sales challans.
